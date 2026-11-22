@@ -1,4 +1,4 @@
-# Measurements for "Is English really the cheapest language for prompts?"
+# Measurements for "[Is English really the cheapest language for prompts?](https://blog.alena.rocks/en/token-tax/)"
 
 Series "How a model works inside", part 1. Every number in the article comes from here. Русская версия ниже.
 
@@ -39,7 +39,7 @@ uv venv .venv && uv pip install --python .venv/bin/python tiktoken tokenizers se
 
 ---
 
-# Замеры для статьи «Правда ли, что русский текст дороже английского?»
+# Замеры для статьи «[Правда ли, что русский текст дороже английского?](https://blog.alena.rocks/token-tax/)»
 
 Серия «Как модель устроена внутри», часть 1. Все цифры статьи — отсюда.
 

@@ -4,7 +4,7 @@ Scripts and measurements behind a blog series on [blog.alena.rocks](https://blog
 
 | Folder | Article |
 | --- | --- |
-| [`token-tax`](token-tax) | Is English really the cheapest language for prompts? The language tax in tokens and the cost of typos. |
+| [`token-tax`](token-tax) | [Is English really the cheapest language for prompts?](https://blog.alena.rocks/en/token-tax/) The language tax in tokens and the cost of typos. |
 
 The author's personal data (prompts, chat history) is not in the repository. Scripts that use it read it from a local `private/` folder.
 
@@ -20,7 +20,7 @@ Code: MIT. Results in `*/results/` are derived from [FLORES-200](https://github.
 
 | Папка | Статья |
 | --- | --- |
-| [`token-tax`](token-tax) | Правда ли, что русский текст дороже английского? Налог на язык в токенах и цена опечаток. |
+| [`token-tax`](token-tax) | [Правда ли, что русский текст дороже английского?](https://blog.alena.rocks/token-tax/) Налог на язык в токенах и цена опечаток. |
 
 Личные данные автора (промпты, история разговоров) в репозиторий не входят. Скрипты, которые с ними работают, читают их из локальной папки `private/`.
 

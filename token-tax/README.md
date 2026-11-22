@@ -26,6 +26,7 @@ uv venv .venv && uv pip install --python .venv/bin/python tiktoken tokenizers se
 | `find_real_typos.py` | Настоящие опечатки в промптах | `private/real_typos.csv`, `results/exp2_real_typos_stats.json` |
 | `exp2_typos.py [--claude]` | Цена опечатки: настоящие, искусственные 2/5/10%, не та раскладка | `results/exp2_typos.json`, `exp2_pieces_examples.json` |
 | `exp3_answers.py [--limit N]` | Токены ответа Claude Opus 5.5 на 20 задач (`exp3_tasks.json`) на русском и английском. Платный, лимит $4,8 | `results/exp3_answers.json` |
+| `BLOG_DIR=… export_web_data.py` | Собирает данные для графиков статьи из `results/` | `src/data/tokens.json` в репозитории блога |
 
 ## Метод и оговорки
 

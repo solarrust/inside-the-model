@@ -23,13 +23,21 @@
    }
   },
   "ru_to_en_ratio": {
-   "input_tokens": 1.2,
-   "output_tokens": 1.35,
-   "answer_tokens": 1.09,
-   "thinking_tokens": 3.61,
-   "words": 0.85,
-   "chars": 0.94
+   "input_tokens": 1.205,
+   "output_tokens": 1.119,
+   "answer_tokens": 1.083,
+   "thinking_tokens": 1.556,
+   "words": 0.845,
+   "chars": 0.93,
+   "cost": 1.119
   },
+  "ru_to_en_median_pair_ratio": {
+   "output_tokens": 1.1,
+   "answer_tokens": 1.08,
+   "words": 0.84,
+   "chars": 0.91
+  },
+  "note": "Размышление = output_tokens − токены видимого ответа по count_tokens; это оценка. Задача 12 (стихотворение) даёт половину разницы в output_tokens.",
   "answer_tokens_per_word": {
    "ru": 3.21,
    "en": 2.5

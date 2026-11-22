@@ -86,7 +86,13 @@ def mean(xs):
 
 
 def ratio(key):
-    return round(st.mean(ru[key] / en[key] for ru, en in pairs if en[key]), 2)
+    """Отношение сумм RU / EN: на этих числах стоят выводы статьи."""
+    return round(sum(ru[key] for ru, _ in pairs) / sum(en[key] for _, en in pairs), 3)
+
+
+def median_ratio(key):
+    """Медиана отношений по парам: показывает разброс от задачи к задаче."""
+    return round(st.median(ru[key] / en[key] for ru, en in pairs if en[key]), 2)
 
 
 summary = {
@@ -95,7 +101,9 @@ summary = {
         lang: {k: mean([r[k] for r in rows if r["lang"] == lang]) for k in ("input_tokens", "output_tokens", "answer_tokens", "thinking_tokens", "words", "chars")}
         for lang in ("ru", "en")
     },
-    "ru_to_en_ratio": {k: ratio(k) for k in ("input_tokens", "output_tokens", "answer_tokens", "thinking_tokens", "words", "chars")},
+    "ru_to_en_ratio": {k: ratio(k) for k in ("input_tokens", "output_tokens", "answer_tokens", "thinking_tokens", "words", "chars", "cost")},
+    "ru_to_en_median_pair_ratio": {k: median_ratio(k) for k in ("output_tokens", "answer_tokens", "words", "chars")},
+    "note": "Размышление = output_tokens − токены видимого ответа по count_tokens; это оценка. Задача 12 (стихотворение) даёт половину разницы в output_tokens.",
     "answer_tokens_per_word": {lang: round(sum(r["answer_tokens"] for r in rows if r["lang"] == lang) / sum(r["words"] for r in rows if r["lang"] == lang), 2) for lang in ("ru", "en")},
     "cost_per_answer_usd": {lang: round(st.mean(r["cost"] for r in rows if r["lang"] == lang), 4) for lang in ("ru", "en")},
     "truncated": sum(r["stop"] == "max_tokens" for r in rows),

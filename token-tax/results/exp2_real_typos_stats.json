@@ -1,0 +1,14 @@
+{
+ "prompts": 905,
+ "words": 14424,
+ "typos": 14,
+ "wrong_layout": 0,
+ "typo_rate_words": 0.001,
+ "prompts_with_typo": 14,
+ "kinds": {
+  "перестановка": 6,
+  "сосед": 5,
+  "пропуск": 2,
+  "повтор": 1
+ }
+}

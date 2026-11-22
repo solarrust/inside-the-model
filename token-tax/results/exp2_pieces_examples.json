@@ -1,0 +1,311 @@
+[
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "важно",
+  "pieces": [
+   " в",
+   "аж",
+   "но"
+  ]
+ },
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "вадно",
+  "pieces": [
+   " в",
+   "ад",
+   "но"
+  ]
+ },
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "функции",
+  "pieces": [
+   " функци",
+   "и"
+  ]
+ },
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "фунцкии",
+  "pieces": [
+   " ф",
+   "ун",
+   "ц",
+   "ки",
+   "и"
+  ]
+ },
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "привет",
+  "pieces": [
+   " пр",
+   "ив",
+   "ет"
+  ]
+ },
+ {
+  "tok": "GPT-4 (cl100k)",
+  "word": "ghbdtn",
+  "pieces": [
+   " gh",
+   "bd",
+   "tn"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "важно",
+  "pieces": [
+   " важно"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "вадно",
+  "pieces": [
+   " в",
+   "ад",
+   "но"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "функции",
+  "pieces": [
+   " функции"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "фунцкии",
+  "pieces": [
+   " фун",
+   "ц",
+   "ки",
+   "и"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "привет",
+  "pieces": [
+   " привет"
+  ]
+ },
+ {
+  "tok": "GPT-4o (o200k)",
+  "word": "ghbdtn",
+  "pieces": [
+   " gh",
+   "bd",
+   "tn"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "важно",
+  "pieces": [
+   " важно"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "вадно",
+  "pieces": [
+   " в",
+   "ад",
+   "но"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "функции",
+  "pieces": [
+   " функци",
+   "и"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "фунцкии",
+  "pieces": [
+   " фун",
+   "ц",
+   "ки",
+   "и"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "привет",
+  "pieces": [
+   " прив",
+   "ет"
+  ]
+ },
+ {
+  "tok": "Llama 3",
+  "word": "ghbdtn",
+  "pieces": [
+   " gh",
+   "bd",
+   "tn"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "важно",
+  "pieces": [
+   " важно"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "вадно",
+  "pieces": [
+   " в",
+   "ад",
+   "но"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "функции",
+  "pieces": [
+   " функци",
+   "и"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "фунцкии",
+  "pieces": [
+   " ф",
+   "ун",
+   "ц",
+   "ки",
+   "и"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "привет",
+  "pieces": [
+   " пр",
+   "ив",
+   "ет"
+  ]
+ },
+ {
+  "tok": "Qwen 3",
+  "word": "ghbdtn",
+  "pieces": [
+   " gh",
+   "bd",
+   "tn"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "важно",
+  "pieces": [
+   " важно"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "вадно",
+  "pieces": [
+   " в",
+   "ад",
+   "но"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "функции",
+  "pieces": [
+   " функции"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "фунцкии",
+  "pieces": [
+   " фун",
+   "цк",
+   "ии"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "привет",
+  "pieces": [
+   " привет"
+  ]
+ },
+ {
+  "tok": "GigaChat",
+  "word": "ghbdtn",
+  "pieces": [
+   " gh",
+   "bd",
+   "tn"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "важно",
+  "pieces": [
+   "▁▁",
+   "важно"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "вадно",
+  "pieces": [
+   "▁▁",
+   "ва",
+   "дно"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "функции",
+  "pieces": [
+   "▁▁",
+   "функции"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "фунцкии",
+  "pieces": [
+   "▁▁",
+   "фун",
+   "ц",
+   "кии"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "привет",
+  "pieces": [
+   "▁▁",
+   "привет"
+  ]
+ },
+ {
+  "tok": "YandexGPT 5",
+  "word": "ghbdtn",
+  "pieces": [
+   "▁▁",
+   "gh",
+   "bd",
+   "tn"
+  ]
+ }
+]

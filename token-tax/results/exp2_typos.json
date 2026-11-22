@@ -1,0 +1,109 @@
+{
+ "weights": {
+  "сосед": 6,
+  "пропуск": 3,
+  "повтор": 2,
+  "перестановка": 7,
+  "вставка": 1
+ },
+ "real_pairs": 14,
+ "real": {
+  "cl100k_base": {
+   "mean_extra_tokens": 0.79,
+   "mean_ratio": 1.33,
+   "share_more_expensive": 0.5
+  },
+  "o200k_base": {
+   "mean_extra_tokens": 1.29,
+   "mean_ratio": 2.14,
+   "share_more_expensive": 0.79
+  },
+  "llama3": {
+   "mean_extra_tokens": 1.21,
+   "mean_ratio": 1.92,
+   "share_more_expensive": 0.86
+  },
+  "qwen3": {
+   "mean_extra_tokens": 1.36,
+   "mean_ratio": 2.06,
+   "share_more_expensive": 0.79
+  },
+  "gigachat": {
+   "mean_extra_tokens": 1.36,
+   "mean_ratio": 2.36,
+   "share_more_expensive": 0.71
+  },
+  "yandexgpt5": {
+   "mean_extra_tokens": 0.93,
+   "mean_ratio": 1.44,
+   "share_more_expensive": 0.71
+  },
+  "claude_new": {
+   "mean_extra_tokens": 0.86,
+   "mean_ratio": 1.26,
+   "share_more_expensive": 0.64
+  }
+ },
+ "synthetic_pct": {
+  "cl100k_base|ru|0.02": 0.36,
+  "o200k_base|ru|0.02": 1.03,
+  "llama3|ru|0.02": 0.83,
+  "qwen3|ru|0.02": 0.76,
+  "gigachat|ru|0.02": 1.58,
+  "yandexgpt5|ru|0.02": 1.56,
+  "claude_new|ru|0.02": 0.54,
+  "cl100k_base|ru|0.05": 0.88,
+  "o200k_base|ru|0.05": 2.64,
+  "llama3|ru|0.05": 2.12,
+  "qwen3|ru|0.05": 1.88,
+  "gigachat|ru|0.05": 3.84,
+  "yandexgpt5|ru|0.05": 3.81,
+  "claude_new|ru|0.05": 1.32,
+  "cl100k_base|ru|0.1": 1.75,
+  "o200k_base|ru|0.1": 5.18,
+  "llama3|ru|0.1": 4.09,
+  "qwen3|ru|0.1": 3.68,
+  "gigachat|ru|0.1": 7.6,
+  "yandexgpt5|ru|0.1": 7.57,
+  "claude_new|ru|0.1": 2.61,
+  "cl100k_base|en|0.02": 1.53,
+  "o200k_base|en|0.02": 1.41,
+  "llama3|en|0.02": 1.51,
+  "qwen3|en|0.02": 1.5,
+  "gigachat|en|0.02": 1.44,
+  "yandexgpt5|en|0.02": 1.43,
+  "claude_new|en|0.02": 0.97,
+  "cl100k_base|en|0.05": 3.85,
+  "o200k_base|en|0.05": 3.57,
+  "llama3|en|0.05": 3.81,
+  "qwen3|en|0.05": 3.79,
+  "gigachat|en|0.05": 3.72,
+  "yandexgpt5|en|0.05": 3.67,
+  "claude_new|en|0.05": 2.43,
+  "cl100k_base|en|0.1": 7.51,
+  "o200k_base|en|0.1": 6.99,
+  "llama3|en|0.1": 7.45,
+  "qwen3|en|0.1": 7.39,
+  "gigachat|en|0.1": 7.17,
+  "yandexgpt5|en|0.1": 7.11,
+  "claude_new|en|0.1": 4.66
+ },
+ "wrong_layout_ratio": {
+  "cl100k_base": 1.16,
+  "o200k_base": 1.96,
+  "llama3": 1.77,
+  "qwen3": 1.61,
+  "gigachat": 2.54,
+  "yandexgpt5": 2.62,
+  "claude_new": 2.02
+ },
+ "labels": {
+  "cl100k_base": "GPT-4 (cl100k)",
+  "o200k_base": "GPT-4o (o200k)",
+  "llama3": "Llama 3",
+  "qwen3": "Qwen 3",
+  "gigachat": "GigaChat",
+  "yandexgpt5": "YandexGPT 5",
+  "claude_new": "Claude 4.7+"
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "claude-haiku-4-5": {
+  "eng_Latn": 29894,
+  "rus_Cyrl": 56387
+ },
+ "claude-sonnet-4-6": {
+  "eng_Latn": 29894,
+  "rus_Cyrl": 56387
+ },
+ "claude-opus-4-6": {
+  "eng_Latn": 29894,
+  "rus_Cyrl": 56387
+ },
+ "claude-opus-4-7": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-opus-4-8": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-sonnet-5": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-sonnet-5-5": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-haiku-5-5": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-opus-5-5": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ },
+ "claude-fable-5-2": {
+  "eng_Latn": 42927,
+  "rus_Cyrl": 56562
+ }
+}

@@ -1,0 +1,22 @@
+[
+ {"ru": "Объясни, что такое замыкание в JavaScript, и приведи короткий пример.", "en": "Explain what a closure is in JavaScript and give a short example."},
+ {"ru": "Напиши функцию на Python, которая проверяет, является ли строка палиндромом.", "en": "Write a Python function that checks whether a string is a palindrome."},
+ {"ru": "Чем отличается TCP от UDP? Ответь коротко.", "en": "What is the difference between TCP and UDP? Answer briefly."},
+ {"ru": "Предложи пять названий для кофейни у моря.", "en": "Suggest five names for a seaside coffee shop."},
+ {"ru": "Как вежливо отказать коллеге, который просит помочь с проектом в выходные? Напиши текст сообщения.", "en": "How do I politely turn down a colleague who asks for help with a project over the weekend? Write the message."},
+ {"ru": "Объясни, почему небо голубое, так, чтобы понял десятилетний ребёнок.", "en": "Explain why the sky is blue so that a ten-year-old would understand."},
+ {"ru": "Составь план тренировок на неделю для новичка, который хочет начать бегать.", "en": "Make a one-week training plan for a beginner who wants to start running."},
+ {"ru": "В чём разница между git merge и git rebase?", "en": "What is the difference between git merge and git rebase?"},
+ {"ru": "Напиши SQL-запрос: пять покупателей с самой большой суммой заказов за прошлый месяц. Таблицы: orders(id, customer_id, amount, created_at) и customers(id, name).", "en": "Write an SQL query: the five customers with the largest order total last month. Tables: orders(id, customer_id, amount, created_at) and customers(id, name)."},
+ {"ru": "Перечисли плюсы и минусы удалённой работы.", "en": "List the pros and cons of remote work."},
+ {"ru": "Объясни простыми словами, что такое инфляция.", "en": "Explain in simple words what inflation is."},
+ {"ru": "Как сделать адаптивную сетку карточек на CSS Grid? Покажи пример.", "en": "How do I make a responsive card grid with CSS Grid? Show an example."},
+ {"ru": "Придумай короткое стихотворение про осень в городе.", "en": "Write a short poem about autumn in the city."},
+ {"ru": "Что взять с собой в поход на два дня? Дай список.", "en": "What should I take on a two-day hike? Give me a list."},
+ {"ru": "Объясни разницу между let, const и var в JavaScript.", "en": "Explain the difference between let, const and var in JavaScript."},
+ {"ru": "Напиши письмо в службу поддержки: заказ пришёл повреждённым, хочу замену.", "en": "Write an email to customer support: my order arrived damaged and I want a replacement."},
+ {"ru": "Какие есть способы ускорить загрузку сайта? Назови главные.", "en": "What are the ways to make a website load faster? Name the main ones."},
+ {"ru": "Объясни по шагам, как работает HTTPS.", "en": "Explain step by step how HTTPS works."},
+ {"ru": "Дай рецепт простого ужина из курицы и риса.", "en": "Give me a recipe for a simple chicken and rice dinner."},
+ {"ru": "Как подготовиться к собеседованию на позицию фронтенд-разработчика?", "en": "How do I prepare for a front-end developer job interview?"}
+]

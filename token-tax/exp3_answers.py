@@ -1,15 +1,15 @@
-"""Эксперимент 3: сколько токенов уходит на ответ на русском и на английском.
+"""Experiment 3: how many tokens an answer takes in Russian and in English.
 
-20 одинаковых задач на двух языках (exp3_tasks.json), Claude Opus 5.5 с настройками по умолчанию.
-Каждую задачу прогоняем RUNS раз. Считаем:
-  * output_tokens из usage — всё, за что платят как за выход: размышление + ответ;
-  * токены самого ответа — через count_tokens, минус база (как в exp1);
-  * размышление = output_tokens − токены ответа (текст размышления API не отдаёт);
-  * слова и символы ответа.
+20 identical tasks in two languages (exp3_tasks.json), Claude Opus 5.5 with default settings.
+Each task runs RUNS times. We count:
+  * output_tokens from usage: everything billed as output, thinking + answer;
+  * tokens of the answer itself: via count_tokens, minus the baseline (as in exp1);
+  * thinking = output_tokens - answer tokens (the API does not return the thinking text);
+  * words and characters of the answer.
 
-Запросы платные. Скрипт останавливается, когда расход дойдёт до BUDGET долларов.
-Ответы целиком сохраняются в data/exp3_answers.jsonl (не коммитится), в results/ — только числа.
-Запуск: .venv/bin/python exp3_answers.py [--limit N]
+Requests are paid. The script stops when spending reaches BUDGET dollars.
+Full answers go to data/exp3_answers.jsonl (not committed); results/ keeps only the numbers.
+Run: .venv/bin/python exp3_answers.py [--limit N]
 """
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ import anthropic
 
 HERE = Path(__file__).parent
 MODEL = "claude-opus-5-5"
-PRICE_IN, PRICE_OUT = 4 / 1e6, 20 / 1e6  # $ за токен, Opus 5.5 (claude-api skill, 2026-11-22)
-BUDGET = 4.8  # запас под последний запрос: максимум $0,16
+PRICE_IN, PRICE_OUT = 4 / 1e6, 20 / 1e6  # $ per token, Opus 5.5 (claude-api skill, 2026-11-22)
+BUDGET = 4.8  # headroom for the last request: at most $0.16
 RUNS = 3
 MAX_TOKENS = 8000
 
@@ -55,7 +55,7 @@ with raw_path.open("a", encoding="utf-8") as out:
                 if (i, lang, run) in done:
                     continue
                 if spent >= BUDGET:
-                    print(f"Бюджет ${BUDGET} исчерпан, остановка")
+                    print(f"Budget ${BUDGET} reached, stopping")
                     break
                 resp = client.messages.create(
                     model=MODEL, max_tokens=MAX_TOKENS,
@@ -86,12 +86,12 @@ def mean(xs):
 
 
 def ratio(key):
-    """Отношение сумм RU / EN: на этих числах стоят выводы статьи."""
+    """Ratio of RU / EN totals: the article's conclusions rest on these numbers."""
     return round(sum(ru[key] for ru, _ in pairs) / sum(en[key] for _, en in pairs), 3)
 
 
 def median_ratio(key):
-    """Медиана отношений по парам: показывает разброс от задачи к задаче."""
+    """Median of per-pair ratios: shows the spread from task to task."""
     return round(st.median(ru[key] / en[key] for ru, en in pairs if en[key]), 2)
 
 

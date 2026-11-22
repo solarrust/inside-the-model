@@ -1,12 +1,12 @@
-"""Ищет настоящие опечатки в промптах Алёны (private/prompts.jsonl).
+"""Finds real typos in Alena's prompts (private/prompts.jsonl).
 
-Опечатка-кандидат — слово, которого нет в словаре pymorphy3, но которое одной правкой
-(соседняя клавиша, пропуск, повтор, перестановка, вставка, замена) превращается в словарное.
-Не та раскладка — латиница, которая по клавишам ЙЦУКЕН даёт словарное русское слово.
+A typo candidate is a word missing from the pymorphy3 dictionary that one edit
+(neighbour key, omission, repetition, transposition, insertion, substitution) turns into a dictionary word.
+Wrong layout: Latin letters that map to a dictionary Russian word via the ЙЦУКЕН keys.
 
-Выход (не коммитится): private/real_typos.csv — пары для ручной проверки,
-private/prompts_fixed.jsonl — промпты с исправленными опечатками.
-Агрегаты (коммитятся): results/exp2_real_typos_stats.json.
+Output (not committed): private/real_typos.csv, pairs for manual review,
+private/prompts_fixed.jsonl, prompts with typos fixed.
+Aggregates (committed): results/exp2_real_typos_stats.json.
 """
 from __future__ import annotations
 
@@ -25,13 +25,13 @@ morph = pymorphy3.MorphAnalyzer()
 RU = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
 CYR = re.compile(r"[а-яё]+", re.I)
 LAT = re.compile(r"\b[a-z;',.\[\]`]{4,}\b", re.I)
-# Жаргон Алёны, который словарь не знает, а поиск принимает за опечатки (проверено вручную)
+# Alena's jargon: unknown to the dictionary, so the search takes it for typos (checked by hand)
 JARGON = {"прод", "проде", "юай", "акк", "блоб", "пушь", "винды", "рест", "пиарь", "промо", "гист"}
 EN_WORDS = {w.strip().lower() for w in open("/usr/share/dict/words", encoding="utf-8")}
 PREF = {"сосед": 0, "перестановка": 1, "пропуск": 2, "повтор": 3, "вставка": 4, "замена": 5}
 
 prompts = [json.loads(l) for l in open(HERE / "private/prompts.jsonl", encoding="utf-8")]
-# Длинные сообщения — обычно вставленный текст, а не набранный руками
+# Long messages are usually pasted text, not typed by hand
 typed = [p for p in prompts if len(p["text"]) <= 1500]
 freq = Counter(w.lower() for p in typed for w in CYR.findall(p["text"]))
 
@@ -47,8 +47,8 @@ def edits1(w: str) -> set[str]:
 
 
 def correct(w: str) -> tuple[str, str] | None:
-    # Настоящая опечатка обычно портит слово, которое автор пишет часто.
-    # Редкое «исправление» чаще значит, что исходное слово — жаргон («закомить» → «закосить»).
+    # A real typo usually breaks a word the author writes often.
+    # A rare "fix" more likely means the original word is jargon («закомить» → «закосить»).
     cands = [c for c in edits1(w) if c != w and known(c) and freq.get(c, 0) >= 2]
     scored = []
     for c in cands:
@@ -72,7 +72,7 @@ for p in typed:
     new = t
     for w in words:
         lw = w.lower()
-        if len(lw) < 3 or lw in JARGON or known(lw) or freq[lw] > 2:  # частое «незнакомое» слово — жаргон, а не опечатка
+        if len(lw) < 3 or lw in JARGON or known(lw) or freq[lw] > 2:  # a frequent "unknown" word is jargon, not a typo
             continue
         r = correct(lw)
         if r:

@@ -1,4 +1,4 @@
-"""Опечатки: раскладки, поиск настоящих опечаток, генерация искусственных."""
+"""Typos: keyboard layouts, finding real typos, generating synthetic ones."""
 from __future__ import annotations
 
 import random
@@ -6,13 +6,13 @@ import re
 
 RU_ROWS = ["ёйцукенгшщзхъ", "фывапролджэ", "ячсмитьбю"]
 EN_ROWS = ["`qwertyuiop[]", "asdfghjkl;'", "zxcvbnm,."]
-# Одна и та же физическая клавиша в двух раскладках (ЙЦУКЕН ↔ QWERTY)
+# The same physical key in two layouts (ЙЦУКЕН ↔ QWERTY)
 RU2EN = {r: e for rr, ee in zip(RU_ROWS, EN_ROWS) for r, e in zip(rr, ee)}
 EN2RU = {e: r for r, e in RU2EN.items()}
 
 
 def _neighbors(rows: list[str]) -> dict[str, set[str]]:
-    """Соседние клавиши: слева, справа и две ближайшие в рядах сверху и снизу."""
+    """Neighbour keys: left, right and the two nearest in the rows above and below."""
     nb: dict[str, set[str]] = {}
     for i, row in enumerate(rows):
         for j, ch in enumerate(row):
@@ -35,7 +35,7 @@ ALPHA = {"ru": "абвгдеёжзийклмнопрстуфхцчшщъыьэю
 
 
 def wrong_layout(text: str) -> str:
-    """Текст, набранный в английской раскладке вместо русской: «привет» → «ghbdtn»."""
+    """Text typed in the English layout instead of the Russian one: «привет» → «ghbdtn»."""
     out = []
     for ch in text:
         low = ch.lower()
@@ -44,22 +44,22 @@ def wrong_layout(text: str) -> str:
     return "".join(out)
 
 
-# --- Типы опечаток ---------------------------------------------------------
+# --- Typo kinds -------------------------------------------------------------
 
 def typo_variants(word: str, lang: str) -> list[tuple[str, str]]:
-    """Все однократные опечатки слова: (тип, вариант)."""
+    """All single-edit typos of a word: (kind, variant). Kind names are Russian keys used in results/."""
     nb, alpha = NEIGHBORS[lang], ALPHA[lang]
     out = []
     w = word
     for i, ch in enumerate(w):
         low = ch.lower()
-        for n in nb.get(low, ()):  # соседняя клавиша
+        for n in nb.get(low, ()):  # neighbour key
             out.append(("сосед", w[:i] + n + w[i + 1:]))
         out.append(("пропуск", w[:i] + w[i + 1:]))
         out.append(("повтор", w[:i] + ch + w[i:]))
         if i + 1 < len(w) and w[i] != w[i + 1]:
             out.append(("перестановка", w[:i] + w[i + 1] + w[i] + w[i + 2:]))
-        for n in nb.get(low, ()):  # лишняя соседняя клавиша
+        for n in nb.get(low, ()):  # extra neighbour key
             out.append(("вставка", w[:i] + n + w[i:]))
     return out
 
@@ -86,7 +86,7 @@ WORD = re.compile(r"[A-Za-zА-Яа-яЁё]+")
 
 
 def corrupt(text: str, rate: float, lang: str, seed: int, weights: dict[str, float]) -> str:
-    """Вносит одну опечатку в долю rate слов длиной от 3 букв."""
+    """Puts one typo into a share `rate` of words that are 3+ letters long."""
     rng = random.Random(seed)
 
     def sub(m: re.Match) -> str:

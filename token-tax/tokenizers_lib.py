@@ -1,6 +1,6 @@
-"""Единый интерфейс к токенизаторам: tiktoken, Hugging Face tokenizers, SentencePiece, Claude count_tokens.
+"""One interface to tokenizers: tiktoken, Hugging Face tokenizers, SentencePiece, Claude count_tokens.
 
-Каждый токенизатор — функция count(text) -> int и метаданные: модель, год, размер словаря.
+Each tokenizer is a count(text) -> int function plus metadata: model, year, vocabulary size.
 """
 from __future__ import annotations
 
@@ -16,9 +16,9 @@ HF = HERE / "data" / "hf"
 @dataclass
 class Tok:
     key: str
-    label: str  # подпись на графике
+    label: str  # chart label
     family: str  # openai | open | ru | claude
-    year: int  # год выхода первой модели с этим токенизатором
+    year: int  # release year of the first model with this tokenizer
     count: Callable[[str], int]
     vocab: int | None = None
     encode_pieces: Callable[[str], list[str]] | None = field(default=None, repr=False)
@@ -63,10 +63,10 @@ def _spm(repo_dir: str, key: str, label: str, family: str, year: int) -> Tok:
 
 
 def _claude(model: str, key: str, label: str, year: int) -> Tok:
-    """count_tokens бесплатен (docs: build-with-claude/token-counting, сохранено в sources/).
+    """count_tokens is free (docs: build-with-claude/token-counting, saved in sources/).
 
-    Ответ включает служебные токены обёртки сообщения. Вычитаем базу: счёт для текста «a»
-    минус 1 токен самой «a». На длинных текстах поправка почти не влияет на отношения.
+    The count includes service tokens of the message wrapper. We subtract a baseline: the count
+    for the text "a" minus 1 token for "a" itself. On long texts the correction barely affects ratios.
     """
     import anthropic
 
@@ -91,13 +91,13 @@ _LOCAL = [
 
 
 def all_local() -> list[Tok]:
-    """Токенизаторы, которые работают без сети. Год — по первой модели с этим словарём."""
+    """Tokenizers that work offline. Year is that of the first model with this vocabulary."""
     toks = [
         # tiktoken/model.py: text-davinci-001/davinci → r50k_base; gpt-4/gpt-3.5-turbo → cl100k_base; gpt-4o → o200k_base
         _tiktoken("r50k_base", "GPT-3 (r50k)", 2020),
         _tiktoken("cl100k_base", "GPT-4 (cl100k)", 2023),
         _tiktoken("o200k_base", "GPT-4o (o200k)", 2024),
-        # Оригиналы Llama и Gemma закрыты на HF; токенизатор берём из открытых копий unsloth
+        # The original Llama and Gemma repos are gated on HF; we take the tokenizer from open unsloth copies
         _hf("unsloth__Llama-3.2-1B-Instruct", "llama3", "Llama 3", "open", 2024),
         _hf("unsloth__gemma-3-4b-it", "gemma3", "Gemma 3", "open", 2025),
         _hf("Qwen__Qwen2.5-7B-Instruct", "qwen25", "Qwen 2.5", "open", 2024),
@@ -111,7 +111,7 @@ def all_local() -> list[Tok]:
 
 
 def available() -> list[Tok]:
-    """Только те токенизаторы, чьи файлы скачаны (после уборки часть data/hf удалена)."""
+    """Only the tokenizers whose files are downloaded (cleanup may have removed part of data/hf)."""
     out = []
     for make in _LOCAL:
         try:
@@ -122,7 +122,7 @@ def available() -> list[Tok]:
 
 
 def claude() -> list[Tok]:
-    # Учётные данные SDK берёт сам: ANTHROPIC_API_KEY или профиль после `ant auth login`.
+    # The SDK finds credentials itself: ANTHROPIC_API_KEY or the profile from `ant auth login`.
     # docs token-counting: «Claude 4.7 and later models … use a newer tokenizer»
     return [
         _claude("claude-sonnet-4-6", "claude_old", "Claude до 4.7", 2024),

@@ -1,4 +1,4 @@
-"""Проверка: одинаковый ли счёт у моделей Claude одного поколения токенизатора. FLORES devtest, en и ru."""
+"""Check: do Claude models with the same tokenizer generation give the same count? FLORES devtest, en and ru."""
 import json, anthropic
 from pathlib import Path
 F = Path("data/flores/flores200_dataset/devtest")

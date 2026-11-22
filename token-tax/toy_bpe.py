@@ -1,6 +1,6 @@
-"""Игрушечный BPE для статьи: какие пары склеиваются по шагам.
+"""Toy BPE for the article: which pairs merge at each step.
 
-Запуск: python toy_bpe.py [en] — без аргумента русский корпус, с en — английский.
+Run: python toy_bpe.py [en]. Without an argument it uses the Russian corpus, with en the English one.
 """
 import sys
 from collections import Counter
@@ -27,4 +27,4 @@ for step in range(1, 6):
                 out.append(w[i]); i += 1
         new[tuple(out)] = c
     words = new
-    print(f"шаг {step}: {a}+{b} ({n} раз) →", "  ".join("·".join(w) for w in words))
+    print(f"step {step}: {a}+{b} ({n} times) →", "  ".join("·".join(w) for w in words))

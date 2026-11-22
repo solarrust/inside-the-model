@@ -1,13 +1,13 @@
-"""Эксперимент 1. Налог на язык.
+"""Experiment 1. The language tax.
 
-Метрика — «премия» (tokenization premium, Petrov et al., 2023): токены текста на языке X,
-делённые на токены того же текста на английском. 1.0 — паритет, 2.0 — вдвое дороже.
+Metric: tokenization premium (Petrov et al., 2023), tokens of a text in language X
+divided by tokens of the same text in English. 1.0 is parity, 2.0 is twice as expensive.
 
-Корпуса:
-  * FLORES-200 devtest — 1012 предложений, профессиональный перевод на 200+ языков (CC BY-SA 4.0).
-  * Блог — RU- и EN-версии статей из src/content/blog, только проза (без кода, ссылок, JSX).
+Corpora:
+  * FLORES-200 devtest: 1012 sentences, professional translation into 200+ languages (CC BY-SA 4.0).
+  * Blog: RU and EN versions of posts from src/content/blog, prose only (no code, links, JSX).
 
-Запуск: .venv/bin/python exp1_language_tax.py [--claude]
+Run: .venv/bin/python exp1_language_tax.py [--claude]
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from tokenizers_lib import all_local, claude
 
 HERE = Path(__file__).parent
 FLORES = HERE / "data" / "flores" / "flores200_dataset" / "devtest"
-# Статьи блога лежат в его приватном репозитории. Без них скрипт считает только FLORES.
+# Blog posts live in the blog's own repository. Without them the script counts FLORES only.
 BLOG = Path(os.environ.get("BLOG_DIR", HERE.parent.parent / "src" / "content" / "blog"))
 OUT = HERE / "results"
 
@@ -56,13 +56,13 @@ def flores_text(code: str) -> str:
 
 def strip_mdx(src: str) -> str:
     src = re.sub(r"^---\n.*?\n---\n", "", src, flags=re.S)  # frontmatter
-    src = re.sub(r"```.*?```", "", src, flags=re.S)  # блоки кода
+    src = re.sub(r"```.*?```", "", src, flags=re.S)  # code blocks
     src = re.sub(r"^(import|export) .*$", "", src, flags=re.M)
-    src = re.sub(r"<[^>]+>", "", src)  # JSX и HTML
-    src = re.sub(r"`[^`]*`", "", src)  # инлайн-код
-    src = re.sub(r"\]\([^)]*\)", "]", src)  # адреса ссылок
+    src = re.sub(r"<[^>]+>", "", src)  # JSX and HTML
+    src = re.sub(r"`[^`]*`", "", src)  # inline code
+    src = re.sub(r"\]\([^)]*\)", "]", src)  # link URLs
     src = re.sub(r"https?://\S+", "", src)
-    src = re.sub(r"[#>*_\[\]|]", "", src)  # разметка
+    src = re.sub(r"[#>*_\[\]|]", "", src)  # markup
     src = re.sub(r"\n{2,}", "\n", src)
     return src.strip()
 
@@ -102,7 +102,7 @@ def main() -> None:
         w.writeheader()
         w.writerows(rows)
 
-    # --- Блог ---
+    # --- Blog ---
     blog = []
     pairs = blog_pairs()
     ru_all = "\n".join(p[0] for p in pairs.values())
@@ -119,7 +119,7 @@ def main() -> None:
         w.writeheader()
         w.writerows(blog)
 
-    # Слияние с прошлыми прогонами: Claude считается отдельно и не должен стираться локальным прогоном.
+    # Merge with previous runs: Claude is counted separately and must not be wiped by a local run.
     summary_path = OUT / "exp1_summary.json"
     old = json.loads(summary_path.read_text()) if summary_path.exists() else {}
     keep = [m for m in old.get("tokenizers", []) if m["key"] not in {t.key for t in toks}]
@@ -130,12 +130,12 @@ def main() -> None:
     }
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=1))
 
-    print("\nПремия русского к английскому:")
+    print("\nRussian premium over English:")
     ru = next(r for r in rows if r["lang"] == "rus_Cyrl")
     for tok in toks:
-        print(f"  {tok.label:16} FLORES {ru[f'{tok.key}_premium']:.2f}   блог {blog[-1][f'{tok.key}_premium']:.2f}")
-    print(f"  {'байты UTF-8':16} FLORES {ru['bytes_premium']:.2f}   блог {blog[-1]['ru_bytes'] / blog[-1]['en_bytes']:.2f}")
-    print(f"  {'слова':16} FLORES {ru['words'] / eng['words']:.2f}   блог {blog[-1]['ru_words'] / blog[-1]['en_words']:.2f}")
+        print(f"  {tok.label:16} FLORES {ru[f'{tok.key}_premium']:.2f}   blog {blog[-1][f'{tok.key}_premium']:.2f}")
+    print(f"  {'UTF-8 bytes':16} FLORES {ru['bytes_premium']:.2f}   blog {blog[-1]['ru_bytes'] / blog[-1]['en_bytes']:.2f}")
+    print(f"  {'words':16} FLORES {ru['words'] / eng['words']:.2f}   blog {blog[-1]['ru_words'] / blog[-1]['en_words']:.2f}")
 
 
 if __name__ == "__main__":

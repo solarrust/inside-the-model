@@ -1,4 +1,4 @@
-"""Собирает компактный JSON для графиков статьи: src/data/tokens.json."""
+"""Builds a compact JSON for the article charts: src/data/tokens.json."""
 import json
 import os
 from pathlib import Path
@@ -24,14 +24,14 @@ out = {
     "claude_models": cm,
     "typos": {"rates": [0, 2, 5, 10], "series": typos, "labels": ty["labels"],
               "per_typo": ty["real"], "wrong_layout": ty["wrong_layout_ratio"]},
-    # Ответы Opus 5.5: средние на ответ и отношение RU/EN по суммам (у языков одинаковое число ответов)
+    # Opus 5.5 answers: per-answer means and the RU/EN ratio of totals (both languages have the same number of answers)
     "answers": {"model": an["model"], "n": an["pairs"], "spent_usd": an["spent_usd"], "by_lang": an["by_lang"],
                 "cost": an["cost_per_answer_usd"],
                 "ratio": {k: round(an["by_lang"]["ru"][k] / an["by_lang"]["en"][k], 4)
                           for k in ("words", "chars", "answer_tokens", "output_tokens")},
                 "flores_claude": round(cm["claude-opus-5-5"]["rus_Cyrl"] / cm["claude-opus-5-5"]["eng_Latn"], 3)},
 }
-# Куда писать: в репозиторий блога. Путь к нему задаёт BLOG_DIR.
+# Where to write: the blog repository. BLOG_DIR sets its path.
 dst = Path(os.environ.get("BLOG_DIR", HERE.parent.parent)) / "src/data/tokens.json"
 dst.parent.mkdir(exist_ok=True)
 dst.write_text(json.dumps(out, ensure_ascii=False, indent=1))
